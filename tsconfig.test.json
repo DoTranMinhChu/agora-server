@@ -1,0 +1,29 @@
+{
+    "extends": "./tsconfig.json",
+    "paths": {
+        "@/*": [
+            "*"
+        ],
+    },
+    "compilerOptions": {
+        "outDir": "./build",
+        "rootDir": "./src",
+        "module": "CommonJS",
+        "target": "es2017",
+        "moduleResolution": "node",
+        "declaration": true,
+        "lib": [
+            "dom",
+            "es6",
+            "esnext.asynciterable",
+            "es2017.object"
+        ],
+        "skipLibCheck": true,
+        "allowJs": true
+    },
+    "exclude": [
+        "lib",
+        "__tests__"
+    ],
+    "compileOnSave": true
+}
