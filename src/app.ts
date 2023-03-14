@@ -3,12 +3,12 @@ import api from "@/controllers/router";
 import { loggerMiddleware, morganMiddleware, parseRequestMiddleware, queryMongoMiddleware, querySequelizeMiddleware } from './middlewares';
 import { config } from './configs';
 import * as path from "path";
-
+import * as cors from "cors";
 export class App {
     constructor() {
         this.app = express();
         this.middleware();
-
+        this.app.use(cors.default({ origin: '*', exposedHeaders: ['access-token'] }));
         this.app.set("views", path.join(__dirname, "../views"));
         this.app.set('view engine', 'ejs');
 
