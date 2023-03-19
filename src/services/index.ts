@@ -33,7 +33,6 @@ const userService = new UserService();
 const subSampleService = new SubSampleService();
 const authService = new AuthService();
 const agoraService = new AgoraService();
-
 export {
   BaseMongoService,
   BaseSequelizeService,

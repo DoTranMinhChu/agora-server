@@ -40,6 +40,10 @@ export default {
     firebaseDbURL: process.env["FIREBASE_DATABASE_URL"],
     agora: {
         app_id: process.env["DEV_AGORA_APP_ID"] || "DEV_AGORA_APP_ID",
-        app_certificate: process.env["DEV_AGORA_APP_CERTIFICATE"] || "DEV_AGORA_APP_CERTIFICATE"
+        app_certificate: process.env["DEV_AGORA_APP_CERTIFICATE"] || "DEV_AGORA_APP_CERTIFICATE",
+        org_name: process.env["DEV_AGORA_NAME"] || "DEV_AGORA_NAME",
+        app_name: process.env["DEV_AGORA_APP"] || "DEV_AGORA_APP",
+        domain: process.env["DEV_AGORA_DOMAIN"] || "DEV_AGORA_DOMAIN",
+        token: process.env["DEV_AGORA_TOKEN"] || "DEV_AGORA_TOKEN",
     }
 }

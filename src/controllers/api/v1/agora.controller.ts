@@ -19,6 +19,9 @@ export class agoraController extends BaseController {
         // http://localhost:5000/api/v1/agora/rte/channel123/audience/userAccount/uuid123
         this.router.get('/rte/:channel/:role/:tokentype/:uid', this.route(this.generateRTEToken));
 
+        this.router.post('/register-chat', this.route(this.registerChat));
+        this.router.get('/chat-user-uuid/:username', this.route(this.getChatUserUuid));
+        this.router.get('/rtm-token/:username', this.route(this.getTokenUserName));
     }
     service: AgoraService
     async generateRTCToken(req: Request, res: Response) {
@@ -55,6 +58,23 @@ export class agoraController extends BaseController {
         if (channel && tokentype && uid) {
             result = this.service.generateRTEToken(channel, role, tokentype, uid);
         }
+        this.onSuccess(res, result);
+    }
+
+    async registerChat(req: Request, res: Response) {
+        const { chatUserName, password } = req.body
+        const result = await this.service.registerChatUser(chatUserName, password);
+        this.onSuccess(res, result);
+    }
+
+    async getChatUserUuid(req: Request, res: Response) {
+        const { username } = req.params
+        const result = await this.service.getChatUserUuid(`${username}`);
+        this.onSuccess(res, result);
+    }
+    async getTokenUserName(req: Request, res: Response) {
+        const { username } = req.params
+        const result = await this.service.getTokenUserName(`${username}`);
         this.onSuccess(res, result);
     }
 }
