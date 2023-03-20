@@ -102,7 +102,7 @@ export class AgoraService {
     }
 
     // Creates a user with the password "123", and gets UUID.
-    async registerChatUser(chatUserName: string, password: string) {
+    async registerChatUser(username: string, password: string) {
 
         const url = `http://${DOMAIN}/${orgName}/${appName}/users`;
 
@@ -112,7 +112,7 @@ export class AgoraService {
             'Authorization': `Bearer ${TOKEN}`
         };
         const body = {
-            username: chatUserName,
+            username: username,
             password: password
         };
 

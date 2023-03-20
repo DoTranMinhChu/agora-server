@@ -62,8 +62,8 @@ export class agoraController extends BaseController {
     }
 
     async registerChat(req: Request, res: Response) {
-        const { chatUserName, password } = req.body
-        const result = await this.service.registerChatUser(chatUserName, password);
+        const { username, password } = req.body
+        const result = await this.service.registerChatUser(username, password);
         this.onSuccess(res, result);
     }
 
