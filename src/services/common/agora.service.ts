@@ -1,5 +1,6 @@
 import { config } from '@/configs';
 import { RtcTokenBuilder, RtmTokenBuilder, RtmRole } from 'agora-access-token';
+import { ChatTokenBuilder } from 'agora-token'
 import axios from 'axios';
 
 const APP_ID = config.agora.app_id;
@@ -7,7 +8,7 @@ const APP_CERTIFICATE = config.agora.app_certificate;
 const orgName = config.agora.org_name;
 const appName = config.agora.app_name;
 const DOMAIN = config.agora.domain;
-const TOKEN = config.agora.token;
+const expirationInSeconds = 3600;
 export class AgoraService {
     constructor() { }
     /*
@@ -81,17 +82,22 @@ export class AgoraService {
     async getTokenUserName(chatUserName: string) {
 
         const { uuid } = await this.getChatUserUuid(chatUserName);
-        return this.generateRTMToken(uuid)
+
+        const token =
+            ChatTokenBuilder.buildUserToken(APP_ID, APP_CERTIFICATE, uuid, expirationInSeconds);
+        return {
+            token
+        };
 
     }
 
     // Gets the UUID of the user.
     async getChatUserUuid(chatUserName: string) {
-
+        const appToken = ChatTokenBuilder.buildAppToken(APP_ID, APP_CERTIFICATE, expirationInSeconds);
         const url = `http://${DOMAIN}/${orgName}/${appName}/users/${chatUserName}`;
         const headers = {
             'Accept': 'application/json',
-            'Authorization': `Bearer ${TOKEN}`
+            'Authorization': `Bearer ${appToken}`
         };
 
 
@@ -105,11 +111,12 @@ export class AgoraService {
     async registerChatUser(username: string, password: string) {
 
         const url = `http://${DOMAIN}/${orgName}/${appName}/users`;
+        const appToken = ChatTokenBuilder.buildAppToken(APP_ID, APP_CERTIFICATE, expirationInSeconds);
 
         const headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'Authorization': `Bearer ${TOKEN}`
+            'Authorization': `Bearer ${appToken}`
         };
         const body = {
             username: username,
