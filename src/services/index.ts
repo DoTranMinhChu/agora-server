@@ -15,9 +15,8 @@ import { FileService } from "./api/file.service";
 import { SubSampleService } from "./api/v1/subSample.service";
 import { BcryptService } from "./common/bcrypt.service";
 import { LoginService } from "./common/login.service";
-import { AuthService } from "./api/v1/auth.service";
-import { FirebaseService } from "./common/firebase.service";
 import { AgoraService } from "./common/agora.service";
+import { AuthService } from "./api/v1/auth.service";
 
 const fileService = new FileService();
 const imageService = new ImageService();
@@ -27,7 +26,7 @@ const utilService = new UtilService();
 const loginService = new LoginService()
 const bcryptService = new BcryptService();
 const errorService = new ErrorService();
-const firebaseService = new FirebaseService();
+// const firebaseService = new FirebaseService();
 const sampleService = new SampleService();
 const userService = new UserService();
 const subSampleService = new SubSampleService();
@@ -47,7 +46,7 @@ export {
   imageService,
   fileService,
   loginService,
-  firebaseService,
+  // firebaseService,
   // CRUD
   sampleService,
   userService,

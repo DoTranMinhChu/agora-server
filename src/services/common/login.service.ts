@@ -6,7 +6,7 @@ import { ILoginResponse } from "@/interfaces/auth/loginResponse.interface";
 import { IRegisterUserInAppRequest } from "@/interfaces/auth/registerUserInAppRequest.interface";
 import { IRevokeTokenRequest } from "@/interfaces/auth/renewTokenRequest.interface";
 import { refreshTokenUserRepository, userRepository } from "@/repositories";
-import { bcryptService, errorService, firebaseService, tokenService } from "..";
+import { bcryptService, errorService, tokenService } from "..";
 import { ERROR_MESSAGE } from "../errors/errorMessage";
 import axios from "axios";
 import { UserEntity } from "@/models/entities";
@@ -149,7 +149,7 @@ export class LoginService {
                 email = dataFromSocial.email;
                 break;
             case ELoginType.PHONE:
-                dataFromSocial = await firebaseService.verifyIdToken(token);
+                // dataFromSocial = await firebaseService.verifyIdToken(token);
                 username = dataFromSocial.phone_number;
                 phone = dataFromSocial.phone_number;
                 break;
